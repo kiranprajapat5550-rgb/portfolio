@@ -1,20 +1,40 @@
 # Kiran Kumar — Portfolio
 
-Responsive, mobile-friendly portfolio website for business reporting, inventory operations and AI workflow projects.
+Responsive, mobile-friendly portfolio for browser-based reporting tools, operations workflows and approval-based AI concepts.
+
+## Live site
+
+https://kiranprajapat5550-rgb.github.io/portfolio/
+
+## Interactive tools
+
+- **Advanced Sales Analytics** — upload a CSV to calculate gross/net sales, unique orders, average order value and monthly/category summaries.
+- **Inventory Health Checker** — review low/zero stock, expiry windows and long gaps since last movement.
+- **Clinic Appointment Tracker** — test appointment references, time-slot overlap checks, status changes and CSV export.
+- **AI Employee Approval Desk** — review a simulated proposal queue and export the local audit trail.
+
+Open these from the **Interactive tools** section on the homepage.
+
+## Fictional sample CSVs
+
+- `sample-data/sales-sample.csv` — example order lines for the Sales Analytics tool.
+- `sample-data/inventory-sample.csv` — example stock rows for the Inventory Health Checker.
+
+The sample data is fictional. Use the **Download sample data** links inside the relevant tools to try them.
+
+## Privacy and limitations
+
+The sales and inventory tools process the selected CSV locally in the browser. The appointment tracker and approval desk keep their temporary entries in page memory only. These prototypes do not connect to live business systems, external accounts, clinic calendars or real AI agents. Do not upload sensitive personal, patient, financial or confidential business data. Validate all output before using it for decisions.
 
 ## Publish with GitHub Pages
-1. Open **Settings → Pages** in this repository.
-2. Under **Build and deployment**, choose **Deploy from a branch**.
-3. Select branch **main** and folder **/(root)**, then Save.
-4. Wait for GitHub Pages to publish. The expected URL is:
-   https://kiranprajapat5550-rgb.github.io/portfolio/
 
-## Projects
-- `index.html` — portfolio homepage
-- `samples/advanced-sales-analytics.html` — sales analytics project
-- `samples/inventory-health-report.html` — inventory health reporting project
-- `samples/clinic-booking-automation.html` — clinic booking workflow project
-- `samples/ai-employee-agent.html` — human-approval AI employee workflow project
+GitHub Actions deploys the repository to GitHub Pages when changes are pushed to `main`. Check the **Actions** tab if the latest update has not appeared yet.
 
-## Project updates
-This portfolio will be updated as additional real projects are completed. Implementation details and integration status will be documented on the relevant project pages. No credentials or API tokens are included.
+## Project pages
+
+- `samples/advanced-sales-analytics.html`
+- `samples/inventory-health-report.html`
+- `samples/clinic-booking-automation.html`
+- `samples/ai-employee-agent.html`
+
+No credentials or API tokens are included in this repository.
