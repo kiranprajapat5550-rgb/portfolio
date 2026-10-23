@@ -22,6 +22,11 @@ Open these from the **Interactive tools** section on the homepage.
 
 These are local browser demos. The content planner uses a fixed template library (not live AI generation); the SEO checklist does not crawl pages or predict rankings. Review generated plans and checklist findings before using them.
 
+## Digital marketing campaign lab
+
+- `tools/digital-marketing-campaign-lab.html` — plan campaign objectives, audience, budget and creative angle; enter campaign metrics; calculate CTR, CPC, conversion rate and ROAS; export campaign data to CSV.
+- Starter campaign figures are fictional. This is a browser-only demonstration with no live ad-account connection or performance prediction. Keep attribution settings and metric definitions consistent when comparing real campaigns.
+
 ## Fictional sample CSVs
 
 - `sample-data/sales-sample.csv` — example order lines for the Sales Analytics tool.
