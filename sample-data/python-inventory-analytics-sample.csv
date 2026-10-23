@@ -1,0 +1,5 @@
+sku,product,unit_cost,on_hand,lead_time_days,safety_stock,m01,m02,m03,m04,m05,m06,m07,m08,m09,m10,m11,m12
+SKU-001,Daily Essentials Pack,120,18,7,5,42,38,45,47,51,49,53,50,48,55,57,60
+SKU-002,Premium Care Kit,450,8,12,3,10,12,9,15,11,14,16,13,12,17,15,18
+SKU-003,Travel Size Bottle,35,120,5,20,85,90,88,92,95,100,98,105,110,108,115,120
+SKU-004,Seasonal Gift Box,700,4,20,2,2,4,8,15,20,12,6,3,2,1,1,0
