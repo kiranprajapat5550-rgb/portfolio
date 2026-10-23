@@ -48,6 +48,14 @@ class InventoryAnalyticsTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "non-negative"):
             analytics.analyse(self.write_csv(frame))
 
+    def test_repository_sample_csv_is_analyzable(self):
+        sample = Path(__file__).resolve().parents[1] / "sample-data" / "python-inventory-analytics-sample.csv"
+        result = analytics.analyse(sample)
+        self.assertEqual(len(result), 4)
+        self.assertIn("abc_xyz_segment", result.columns)
+        self.assertIn("reorder_point", result.columns)
+        self.assertTrue((result["annual_demand"] >= 0).all())
+
     def test_zero_demand_has_zero_reorder_point(self):
         frame = self.sample_frame()
         for month in analytics.MONTHS:
