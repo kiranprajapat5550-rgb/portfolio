@@ -1,0 +1,10 @@
+order_id,order_date,product,category,quantity,unit_price,discount,return_amount
+ORD-1001,2026-08-02,Desk Lamp,Home,2,899,100,0
+ORD-1002,2026-08-04,Notebook Set,Stationery,5,149,0,0
+ORD-1003,2026-08-10,Water Bottle,Accessories,3,399,50,0
+ORD-1004,2026-09-01,Desk Lamp,Home,1,899,0,0
+ORD-1005,2026-09-03,Notebook Set,Stationery,4,149,25,0
+ORD-1006,2026-09-03,Backpack,Accessories,1,1299,100,200
+ORD-1007,2026-10-02,Water Bottle,Accessories,6,399,150,0
+ORD-1008,2026-10-08,Desk Lamp,Home,2,899,0,0
+ORD-1009,2026-10-12,Notebook Set,Stationery,3,149,0,0
