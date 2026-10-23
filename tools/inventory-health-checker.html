@@ -19,7 +19,7 @@
 <section class="panel">
 <h2>1. Upload inventory CSV</h2>
 <p class="small">Required column: <code>product</code> or <code>sku</code>. Recommended columns: <code>sku, product, quantity, reorder_level, expiry_date, last_movement_date</code>. Dates should use YYYY-MM-DD. Column names are case-insensitive.</p>
-<div class="controls"><input id="csvFile" type="file" accept=".csv,text/csv"><button id="analyze" class="btn">Analyze inventory</button><button id="download" class="btn secondary" disabled>Download flagged CSV</button></div>
+<div class="controls"><input id="csvFile" type="file" accept=".csv,text/csv"><button id="analyze" class="btn">Analyze inventory</button><a class="btn secondary" href="../sample-data/inventory-sample.csv" download="inventory-sample.csv">Download sample data</a><button id="download" class="btn secondary" disabled>Download flagged CSV</button></div>
 <p id="status" class="status" role="status" aria-live="polite">No file analyzed yet.</p>
 </section>
 <section class="stats" aria-label="Inventory summary">
