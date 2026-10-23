@@ -27,6 +27,11 @@ These are local browser demos. The content planner uses a fixed template library
 - `tools/digital-marketing-campaign-lab.html` — plan campaign objectives, audience, budget and creative angle; enter campaign metrics; calculate CTR, CPC, conversion rate and ROAS; export campaign data to CSV.
 - Starter campaign figures are fictional. This is a browser-only demonstration with no live ad-account connection or performance prediction. Keep attribution settings and metric definitions consistent when comparing real campaigns.
 
+## Retail Store Cash Flow Dashboard
+
+- `samples/retail-store-cash-flow-dashboard.html` — responsive portfolio dashboard with cash-flow KPI cards, a daily closing-cash trend, weekly inflow/outflow comparison, weekly summary and expense breakdown.
+- **All dashboard figures are fictional sample data**, created for portfolio demonstration. This is a static prototype with no live bank, POS, accounting or store-system connection. Some example KPI values may not reconcile across every displayed section; validate source definitions and totals before operational use.
+
 ## Fictional sample CSVs
 
 - `sample-data/sales-sample.csv` — example order lines for the Sales Analytics tool.
