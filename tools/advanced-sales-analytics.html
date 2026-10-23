@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Advanced Sales Analytics | Kiran Kumar</title>
+<style>
+:root{color-scheme:dark;--bg:#081120;--panel:#101d32;--line:#263953;--text:#edf5ff;--muted:#a7b7cc;--blue:#318bff;--cyan:#43e1e8;--violet:#9273ff;--good:#7ce6ba;--warn:#ffd17d}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#142b4d 0,transparent 45%),var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{max-width:1120px;margin:auto;padding:28px 18px 60px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}.brand{color:var(--cyan);font-weight:750;letter-spacing:.04em}.back{color:#b8d8ff;text-decoration:none}.hero{padding:32px 0 22px}.eyebrow{color:var(--cyan);text-transform:uppercase;font-size:.78rem;letter-spacing:.15em;font-weight:800}h1{font-size:clamp(2rem,5vw,3.3rem);line-height:1.08;margin:10px 0 14px;max-width:800px}p{color:var(--muted)}.panel{background:linear-gradient(145deg,rgba(16,29,50,.96),rgba(10,21,39,.96));border:1px solid var(--line);border-radius:18px;padding:20px;margin:18px 0}.upload{border:1px dashed #4975a6;border-radius:14px;padding:22px;text-align:center;background:#0b1930}.btn,button{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:10px;padding:11px 16px;background:linear-gradient(90deg,var(--blue),#645cff);color:white;font-weight:750;cursor:pointer;text-decoration:none}.btn.secondary,button.secondary{background:#203651;border:1px solid #3b5573}.btn:disabled,button:disabled{opacity:.45;cursor:not-allowed}input[type=file]{max-width:100%;margin:12px 0;color:var(--muted)}.hint{font-size:.9rem}.status{margin-top:12px;color:var(--good);overflow-wrap:anywhere}.error{color:#ffaaa9}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:12px}.kpi{padding:17px;border:1px solid var(--line);border-radius:14px;background:#0b1729}.kpi small{display:block;color:var(--muted);font-size:.83rem}.kpi strong{display:block;font-size:1.55rem;margin-top:5px;overflow-wrap:anywhere}.section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}h2{font-size:1.25rem;margin:0 0 10px}h3{font-size:1rem;margin:18px 0 8px}.scroll{overflow:auto}table{width:100%;border-collapse:collapse;min-width:430px}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:.9rem;white-space:nowrap}th{color:#b8d8ff;font-weight:700;background:#14243a}tr:last-child td{border-bottom:0}.empty{color:var(--muted);padding:18px 0}.note{border-left:3px solid var(--cyan);padding:10px 14px;background:#0a1a2c;border-radius:0 8px 8px 0}.footer{margin-top:30px;font-size:.85rem;color:var(--muted)}code{color:#9de9ff;background:#0b1525;padding:2px 5px;border-radius:4px}
+</style>
+</head>
+<body><main>
+<div class="top"><div class="brand">KIRAN KUMAR · AI & ANALYTICS</div><a class="back" href="../index.html">← Portfolio home</a></div>
+<header class="hero"><div class="eyebrow">Interactive browser tool</div><h1>Advanced Sales Analytics</h1><p>Upload your sales CSV to calculate sales performance, order KPIs, category results and monthly trends. Your file is processed in this browser; it is not uploaded to a server by this page.</p></header>
+<section class="panel">
+<h2>1. Upload sales data</h2>
+<div class="upload"><p style="margin-top:0">Choose a CSV file from your device</p><input id="file" type="file" accept=".csv,text/csv"><br><button id="load" type="button">Analyze CSV</button> <button id="template" class="secondary" type="button">Download CSV template</button><div id="status" class="status" role="status" aria-live="polite"></div></div>
+<p class="hint"><strong>Required columns:</strong> <code>order_id</code>, <code>order_date</code>, <code>quantity</code>, <code>unit_price</code>. Optional: <code>product</code>, <code>category</code>, <code>discount</code>, <code>return_amount</code>.</p>
+<p class="hint">Dates should be <code>YYYY-MM-DD</code>. <code>discount</code> and <code>return_amount</code> are currency amounts per row (not percentages). Leave unused optional values blank or use 0. Each row should represent one order line.</p>
+</section>
+<section id="results" hidden>
+<div class="section-title"><h2>2. Performance overview</h2><button id="export" type="button">Download analyzed rows</button></div>
+<div class="grid" id="kpis"></div>
+<section class="panel"><h2>Monthly trend</h2><div class="scroll" id="monthly"></div></section>
+<section class="panel"><h2>Category performance</h2><div class="scroll" id="categories"></div></section>
+<section class="panel"><h2>Order-level summary</h2><div class="scroll" id="orders"></div></section>
+<p class="note hint">Calculation notes: Gross sales = quantity × unit price. Net sales = gross sales − discount − return amount. Order count uses unique order IDs. Average order value = net sales ÷ unique orders. Review refunds, tax, shipping, currency and data quality before using results for business decisions.</p>
+</section>
+<div class="footer">Made for the Kiran Kumar portfolio. All analysis runs locally in your browser. Do not use this page on a shared device with sensitive data unless you trust that device.</div>
+</main>
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+let analyzed=[];
+function parseCSV(text){
+  const rows=[];let row=[],field='',quoted=false;
+  text=text.replace(/^\uFEFF/,'');
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(quoted){if(c==='"'&&text[i+1]==='"'){field+='"';i++;}else if(c==='"'){quoted=false;}else{field+=c;}}
+    else if(c==='"'){quoted=true;}
+    else if(c===','){row.push(field);field='';}
+    else if(c==='\n'){row.push(field);rows.push(row);row=[];field='';}
+    else if(c==='\r'){if(text[i+1]==='\n')continue;row.push(field);rows.push(row);row=[];field='';}
+    else field+=c;
+  }
+  if(quoted)throw new Error('CSV has an unclosed quoted field.');
+  if(field!==''||row.length){row.push(field);rows.push(row);}
+  return rows.filter(r=>r.some(v=>String(v).trim()!==''));
+}
+function csvEscape(v){const s=String(v??'');return /[",\r\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;}
+function download(name,rows){const csv=rows.map(r=>r.map(csvEscape).join(',')).join('\r\n');const blob=new Blob(['\uFEFF',csv],{type:'text/csv;charset=utf-8;'});const a=document.createElement('a');const u=URL.createObjectURL(blob);a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(u);}
+function money(n){return new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:2}).format(n);}
+function num(v,label,rowNo,required){if(String(v??'').trim()===''){if(required)throw new Error('Missing '+label+' at CSV row '+rowNo+'.');return 0;}const n=Number(String(v).replace(/,/g,'').trim());if(!Number.isFinite(n))throw new Error('Invalid number in '+label+' at CSV row '+rowNo+'.');return n;}
+function table(headers,rows){if(!rows.length)return '<p class="empty">No rows to display.</p>';return '<table><thead><tr>'+headers.map(h=>'<th>'+esc(h)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(v=>'<td>'+esc(v)+'</td>').join('')+'</tr>').join('')+'</tbody></table>';}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function setStatus(msg,bad){$('status').textContent=msg;$('status').className='status'+(bad?' error':'');}
+$('template').addEventListener('click',()=>download('sales-analytics-template.csv',[['order_id','order_date','product','category','quantity','unit_price','discount','return_amount']]));
+$('load').addEventListener('click',async()=>{
+ const file=$('file').files[0];if(!file){setStatus('Select a CSV file first.',true);return;}if(file.size>10*1024*1024){setStatus('File is larger than 10 MB. Please use a smaller CSV.',true);return;}
+ try{
+  setStatus('Reading and analyzing file…',false);const text=await file.text();const raw=parseCSV(text);if(raw.length<2)throw new Error('CSV must contain a header and at least one data row.');
+  const headers=raw[0].map(h=>h.trim().toLowerCase());if(new Set(headers).size!==headers.length)throw new Error('Duplicate column names found. Make every header unique.');
+  const required=['order_id','order_date','quantity','unit_price'];const missing=required.filter(h=>!headers.includes(h));if(missing.length)throw new Error('Missing required column(s): '+missing.join(', ')+'.');
+  const ix=Object.fromEntries(headers.map((h,i)=>[h,i]));const get=(r,k)=>ix[k]===undefined?'':r[ix[k]]??'';
+  const data=raw.slice(1).map((r,i)=>{
+   const rowNo=i+2;const id=String(get(r,'order_id')).trim();if(!id)throw new Error('Missing order_id at CSV row '+rowNo+'.');
+   const date=String(get(r,'order_date')).trim();if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||Number.isNaN(Date.parse(date+'T00:00:00Z')))throw new Error('Invalid order_date at CSV row '+rowNo+'. Use YYYY-MM-DD.');
+   const quantity=num(get(r,'quantity'),'quantity',rowNo,true),price=num(get(r,'unit_price'),'unit_price',rowNo,true),discount=num(get(r,'discount'),'discount',rowNo,false),returns=num(get(r,'return_amount'),'return_amount',rowNo,false);
+   if(quantity<0||price<0||discount<0||returns<0)throw new Error('Negative quantity/price/discount/return at CSV row '+rowNo+'. Correct the row and try again.');
+   const gross=quantity*price,net=gross-discount-returns;
+   return {order_id:id,order_date:date,product:String(get(r,'product')).trim()||'(Unspecified)',category:String(get(r,'category')).trim()||'(Unspecified)',quantity,unit_price:price,discount,return_amount:returns,gross_sales:gross,net_sales:net};
+  });
+  if(!data.length)throw new Error('No data rows found.');
+  analyzed=data;
+  const orders=new Map();const months=new Map();const cats=new Map();
+  for(const r of data){
+   if(!orders.has(r.order_id))orders.set(r.order_id,{order_id:r.order_id,order_date:r.order_date,lines:0,units:0,gross:0,discount:0,returns:0,net:0});
+   const o=orders.get(r.order_id);o.lines++;o.units+=r.quantity;o.gross+=r.gross_sales;o.discount+=r.discount;o.returns+=r.return_amount;o.net+=r.net_sales;if(r.order_date<o.order_date)o.order_date=r.order_date;
+   const m=r.order_date.slice(0,7);if(!months.has(m))months.set(m,{month:m,orders:new Set(),units:0,gross:0,discount:0,returns:0,net:0});const mo=months.get(m);mo.orders.add(r.order_id);mo.units+=r.quantity;mo.gross+=r.gross_sales;mo.discount+=r.discount;mo.returns+=r.return_amount;mo.net+=r.net_sales;
+   if(!cats.has(r.category))cats.set(r.category,{category:r.category,orders:new Set(),units:0,gross:0,discount:0,returns:0,net:0});const ca=cats.get(r.category);ca.orders.add(r.order_id);ca.units+=r.quantity;ca.gross+=r.gross_sales;ca.discount+=r.discount;ca.returns+=r.return_amount;ca.net+=r.net_sales;
+  }
+  const total=data.reduce((a,r)=>({units:a.units+r.quantity,gross:a.gross+r.gross_sales,discount:a.discount+r.discount,returns:a.returns+r.return_amount,net:a.net+r.net_sales}),{units:0,gross:0,discount:0,returns:0,net:0});
+  const cards=[['Net sales',money(total.net)],['Gross sales',money(total.gross)],['Unique orders',orders.size.toLocaleString('en-IN')],['Average order value',money(total.net/orders.size)],['Units sold',total.units.toLocaleString('en-IN',{maximumFractionDigits:2})],['Discounts',money(total.discount)],['Returns',money(total.returns)],['CSV line items',data.length.toLocaleString('en-IN')]];
+  $('kpis').innerHTML=cards.map(([a,b])=>'<div class="kpi"><small>'+esc(a)+'</small><strong>'+esc(b)+'</strong></div>').join('');
+  const monthly=[...months.values()].sort((a,b)=>a.month.localeCompare(b.month)).map(x=>[x.month,x.orders.size,money(x.gross),money(x.discount),money(x.returns),money(x.net)]);
+  $('monthly').innerHTML=table(['Month','Orders','Gross sales','Discounts','Returns','Net sales'],monthly);
+  const categories=[...cats.values()].sort((a,b)=>b.net-a.net).map(x=>[x.category,x.orders.size,x.units.toLocaleString('en-IN',{maximumFractionDigits:2}),money(x.gross),money(x.discount),money(x.returns),money(x.net)]);
+  $('categories').innerHTML=table(['Category','Orders','Units','Gross sales','Discounts','Returns','Net sales'],categories);
+  const orderRows=[...orders.values()].sort((a,b)=>b.net-a.net).map(x=>[x.order_id,x.order_date,x.lines,x.units.toLocaleString('en-IN',{maximumFractionDigits:2}),money(x.gross),money(x.discount),money(x.returns),money(x.net)]);
+  $('orders').innerHTML=table(['Order ID','Date','Lines','Units','Gross sales','Discounts','Returns','Net sales'],orderRows);
+  $('results').hidden=false;setStatus('Success — analyzed '+data.length+' line items across '+orders.size+' unique orders.',false);$('results').scrollIntoView({behavior:'smooth',block:'start'});
+ }catch(e){analyzed=[];$('results').hidden=true;setStatus(e.message||'Unable to analyze this CSV.',true);}
+});
+$('export').addEventListener('click',()=>{if(!analyzed.length)return;download('sales-analytics-analyzed.csv',[['order_id','order_date','product','category','quantity','unit_price','discount','return_amount','gross_sales','net_sales'],...analyzed.map(r=>[r.order_id,r.order_date,r.product,r.category,r.quantity,r.unit_price,r.discount,r.return_amount,r.gross_sales.toFixed(2),r.net_sales.toFixed(2)])]);});
+})();
+</script>
+</body></html>
