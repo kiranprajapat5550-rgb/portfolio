@@ -39,6 +39,25 @@ These are local browser demos. The content planner uses a fixed template library
 
 The sample data is fictional. Use the **Download sample data** links inside the relevant tools to try them.
 
+## Python inventory analytics
+
+- `scripts/analytics.py` — pandas-based CSV analysis for annual demand, annual usage value, ABC-XYZ segmentation, a simple reorder-point estimate and review flags.
+- `sample-data/python-inventory-analytics-sample.csv` — fictional sample rows for trying the script.
+- `tests/test_analytics.py` — unit tests for key calculations and invalid inputs.
+- `.github/workflows/python-tests.yml` — automated test run on relevant pushes and pull requests.
+
+### Run locally
+
+Install Python 3.10+ and the listed dependency, then run from the repository root:
+
+```bash
+python -m pip install -r requirements.txt
+python scripts/analytics.py sample-data/python-inventory-analytics-sample.csv --output inventory_analysis.csv
+python -m unittest discover -s tests -v
+```
+
+The reorder point is a basic estimate: average daily demand × lead time + supplied safety stock. ABC-XYZ thresholds are simple configurable heuristics, not a universal inventory policy. Validate units, seasonality, supplier variability and business rules before using results operationally. Sample rows are fictional.
+
 ## Privacy and limitations
 
 The sales and inventory tools process the selected CSV locally in the browser. The appointment tracker and approval desk keep their temporary entries in page memory only. These prototypes do not connect to live business systems, external accounts, clinic calendars or real AI agents. Do not upload sensitive personal, patient, financial or confidential business data. Validate all output before using it for decisions.
