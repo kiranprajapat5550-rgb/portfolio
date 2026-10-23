@@ -55,3 +55,8 @@ GitHub Actions deploys the repository to GitHub Pages when changes are pushed to
 - `samples/ai-employee-agent.html`
 
 No credentials or API tokens are included in this repository.
+## CEO cash-flow report sample
+
+- `samples/ceo-cash-flow-report.html` — executive summary, KPI cards, weekly summary and management notes.
+- `samples/retail-store-cash-flow-sample.csv` — fictional weekly cash-flow figures that can be opened in Excel or another spreadsheet app.
+- All figures are fictional demonstration data. No real client, bank, POS, or accounting data is connected.
