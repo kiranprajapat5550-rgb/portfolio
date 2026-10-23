@@ -15,15 +15,15 @@ https://kiranprajapat5550-rgb.github.io/portfolio/
 
 ## Featured projects
 
-- **Retail inventory health review:** [Worked case study](case-studies/inventory-health-review.html) · [Python analysis](scripts/analytics.py) · [Fictional sample CSV](sample-data/python-inventory-analytics-sample.csv).
+- **Retail inventory health review:** [Worked case study](case-studies/inventory-health-review.html) · [Python analysis](scripts/analytics.py) · [Sample CSV](sample-data/python-inventory-analytics-sample.csv).
 
-- **Retail Store Cash Flow Dashboard:** [Open demo](samples/retail-store-cash-flow-dashboard.html) · [Fictional sample CSV](samples/retail-store-cash-flow-sample.csv)
-- **Python Inventory Analytics:** [Analysis script](scripts/analytics.py) · [Fictional sample CSV](sample-data/python-inventory-analytics-sample.csv) · [Automated tests](tests/test_analytics.py)
-- **Advanced Sales Analytics:** [Open demo](samples/advanced-sales-analytics.html)
-- **Clinic Booking Automation:** [Open concept](samples/clinic-booking-automation.html)
-- **AI Employee Approval Desk:** [Open concept](samples/ai-employee-agent.html)
+- **Retail Store Cash Flow Dashboard:** [Open project](samples/retail-store-cash-flow-dashboard.html) · [Sample CSV](samples/retail-store-cash-flow-sample.csv)
+- **Python Inventory Analytics:** [Analysis script](scripts/analytics.py) · [Sample CSV](sample-data/python-inventory-analytics-sample.csv) · [Automated tests](tests/test_analytics.py)
+- **Advanced Sales Analytics:** [Open project](samples/advanced-sales-analytics.html)
+- **Clinic Booking Automation:** [View project](samples/clinic-booking-automation.html)
+- **AI Employee Approval Desk:** [View project](samples/ai-employee-agent.html)
 
-Portfolio demos are prototypes, not claims of live client deployments. Sample datasets are fictional unless explicitly stated otherwise.
+Portfolio projects demonstrate implemented work; live client deployments are only claimed where explicitly verified. Sample datasets are fictional unless explicitly stated otherwise.
 
 ## Interactive tools
 
@@ -39,29 +39,29 @@ Open these from the **Interactive tools** section on the homepage.
 - **Social Content Planner** (`tools/social-content-planner.html`) — create a seven-day template-based social content plan and export CSV.
 - **On-page SEO Review Checklist** (`tools/seo-review-checklist.html`) — track manual SEO review checks and export a review report.
 
-These are local browser demos. The content planner uses a fixed template library (not live AI generation); the SEO checklist does not crawl pages or predict rankings. Review generated plans and checklist findings before using them.
+These are browser-based tools. The content planner uses a fixed template library (not live AI generation); the SEO checklist does not crawl pages or predict rankings. Review generated plans and checklist findings before using them.
 
 ## Digital marketing campaign lab
 
 - `tools/digital-marketing-campaign-lab.html` — plan campaign objectives, audience, budget and creative angle; enter campaign metrics; calculate CTR, CPC, conversion rate and ROAS; export campaign data to CSV.
-- Starter campaign figures are fictional. This is a browser-only demonstration with no live ad-account connection or performance prediction. Keep attribution settings and metric definitions consistent when comparing real campaigns.
+- Starter campaign figures are fictional. This is a browser-based tool with no live ad-account connection or performance prediction. Keep attribution settings and metric definitions consistent when comparing real campaigns.
 
 ## Retail Store Cash Flow Dashboard
 
 - `samples/retail-store-cash-flow-dashboard.html` — responsive portfolio dashboard with cash-flow KPI cards, a daily closing-cash trend, weekly inflow/outflow comparison, weekly summary and expense breakdown.
-- **All dashboard figures are fictional sample data**, created for portfolio demonstration. This is a static prototype with no live bank, POS, accounting or store-system connection. Some example KPI values may not reconcile across every displayed section; validate source definitions and totals before operational use.
+- **All dashboard figures are fictional sample data**, created for portfolio project. This is a static prototype with no live bank, POS, accounting or store-system connection. Some example KPI values may not reconcile across every displayed section; validate source definitions and totals before operational use.
 
-## Fictional sample CSVs
+## Sample CSVs
 
 - `sample-data/sales-sample.csv` — example order lines for the Sales Analytics tool.
 - `sample-data/inventory-sample.csv` — example stock rows for the Inventory Health Checker.
 
-The sample data is fictional. Use the **Download sample data** links inside the relevant tools to try them.
+Included sample files use illustrative data. Use the **Download sample data** links inside the relevant tools to try them.
 
 ## Python inventory analytics
 
 - `scripts/analytics.py` — pandas-based CSV analysis for annual demand, annual usage value, ABC-XYZ segmentation, a simple reorder-point estimate and review flags.
-- `sample-data/python-inventory-analytics-sample.csv` — fictional sample rows for trying the script.
+- `sample-data/python-inventory-analytics-sample.csv` — illustrative sample rows for trying the script.
 - `tests/test_analytics.py` — unit tests for key calculations and invalid inputs.
 - `.github/workflows/python-tests.yml` — automated test run on relevant pushes and pull requests.
 
