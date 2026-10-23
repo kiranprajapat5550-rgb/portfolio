@@ -15,6 +15,13 @@ https://kiranprajapat5550-rgb.github.io/portfolio/
 
 Open these from the **Interactive tools** section on the homepage.
 
+## Additional skill labs
+
+- **Social Content Planner** (`tools/social-content-planner.html`) — create a seven-day template-based social content plan and export CSV.
+- **On-page SEO Review Checklist** (`tools/seo-review-checklist.html`) — track manual SEO review checks and export a review report.
+
+These are local browser demos. The content planner uses a fixed template library (not live AI generation); the SEO checklist does not crawl pages or predict rankings. Review generated plans and checklist findings before using them.
+
 ## Fictional sample CSVs
 
 - `sample-data/sales-sample.csv` — example order lines for the Sales Analytics tool.
