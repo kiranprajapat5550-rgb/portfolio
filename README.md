@@ -15,6 +15,8 @@ https://kiranprajapat5550-rgb.github.io/portfolio/
 
 ## Featured projects
 
+- **Retail inventory health review:** [Worked case study](case-studies/inventory-health-review.html) · [Python analysis](scripts/analytics.py) · [Fictional sample CSV](sample-data/python-inventory-analytics-sample.csv).
+
 - **Retail Store Cash Flow Dashboard:** [Open demo](samples/retail-store-cash-flow-dashboard.html) · [Fictional sample CSV](samples/retail-store-cash-flow-sample.csv)
 - **Python Inventory Analytics:** [Analysis script](scripts/analytics.py) · [Fictional sample CSV](sample-data/python-inventory-analytics-sample.csv) · [Automated tests](tests/test_analytics.py)
 - **Advanced Sales Analytics:** [Open demo](samples/advanced-sales-analytics.html)
