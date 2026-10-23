@@ -6,6 +6,23 @@ Responsive, mobile-friendly portfolio for browser-based reporting tools, operati
 
 https://kiranprajapat5550-rgb.github.io/portfolio/
 
+## Professional links
+
+- **Portfolio:** https://kiranprajapat5550-rgb.github.io/portfolio/
+- **Résumé:** https://kiranprajapat5550-rgb.github.io/portfolio/resume.html
+- **LinkedIn:** https://www.linkedin.com/in/kiran-kumar-ai-automation/
+- **GitHub profile:** https://github.com/kiranprajapat5550-rgb
+
+## Featured projects
+
+- **Retail Store Cash Flow Dashboard:** [Open demo](samples/retail-store-cash-flow-dashboard.html) · [Fictional sample CSV](samples/retail-store-cash-flow-sample.csv)
+- **Python Inventory Analytics:** [Analysis script](scripts/analytics.py) · [Fictional sample CSV](sample-data/python-inventory-analytics-sample.csv) · [Automated tests](tests/test_analytics.py)
+- **Advanced Sales Analytics:** [Open demo](samples/advanced-sales-analytics.html)
+- **Clinic Booking Automation:** [Open concept](samples/clinic-booking-automation.html)
+- **AI Employee Approval Desk:** [Open concept](samples/ai-employee-agent.html)
+
+Portfolio demos are prototypes, not claims of live client deployments. Sample datasets are fictional unless explicitly stated otherwise.
+
 ## Interactive tools
 
 - **Advanced Sales Analytics** — upload a CSV to calculate gross/net sales, unique orders, average order value and monthly/category summaries.
