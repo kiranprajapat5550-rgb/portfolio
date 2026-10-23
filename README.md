@@ -1,6 +1,6 @@
 # Kiran Kumar — Portfolio
 
-Responsive, mobile-friendly portfolio website for reporting, inventory operations and AI workflow concepts.
+Responsive, mobile-friendly portfolio website for business reporting, inventory operations and AI workflow projects.
 
 ## Publish with GitHub Pages
 1. Open **Settings → Pages** in this repository.
@@ -11,10 +11,10 @@ Responsive, mobile-friendly portfolio website for reporting, inventory operation
 
 ## Projects
 - `index.html` — portfolio homepage
-- `samples/advanced-sales-analytics.html` — illustrative sales analysis
-- `samples/inventory-health-report.html` — illustrative stock health report
-- `samples/clinic-booking-automation.html` — appointment workflow concept
-- `samples/ai-employee-agent.html` — human-approval AI workflow concept
+- `samples/advanced-sales-analytics.html` — sales analytics project
+- `samples/inventory-health-report.html` — inventory health reporting project
+- `samples/clinic-booking-automation.html` — clinic booking workflow project
+- `samples/ai-employee-agent.html` — human-approval AI employee workflow project
 
-## Important
-All numbers and records shown in these demos are synthetic examples. These pages do not represent live client data, production automation, or verified platform integrations. No credentials or API tokens are included.
+## Project updates
+This portfolio will be updated as additional real projects are completed. Implementation details and integration status will be documented on the relevant project pages. No credentials or API tokens are included.
