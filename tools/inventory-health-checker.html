@@ -48,7 +48,7 @@ function parseCSV(text){
 }
 function norm(s){return String(s||"").trim().toLowerCase().replace(/[\s-]+/g,"_");}
 function num(v){if(v===undefined||String(v).trim()==="")return null;const n=Number(String(v).replace(/,/g,""));return Number.isFinite(n)?n:null;}
-function date(v){if(!v||!String(v).trim())return null;const s=String(v).trim();if(!/^\d{4}-\d{2}-\d{2}$/.test(s))return null;const d=new Date(s+"T00:00:00Z");return Number.isNaN(d.getTime())?null:d;}
+function date(v){if(!v||!String(v).trim())return null;const s=String(v).trim();if(!/^\d{4}-\d{2}-\d{2}$/.test(s))return null;const d=new Date(s+"T00:00:00Z");return Number.isNaN(d.getTime())||d.toISOString().slice(0,10)!==s?null:d;}
 function daysFromToday(d){const today=new Date();const t=Date.UTC(today.getUTCFullYear(),today.getUTCMonth(),today.getUTCDate());return Math.floor((d.getTime()-t)/86400000);}
 function escapeHTML(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function analyze(){
@@ -59,7 +59,7 @@ function analyze(){
  reader.onload=()=>{
   try{
    const rows=parseCSV(String(reader.result||""));if(rows.length<2)throw new Error("CSV needs a header row and at least one data row.");
-   const headers=rows[0].map(norm);const index={};headers.forEach((h,i)=>index[h]=i);
+   const headers=rows[0].map(norm);if(new Set(headers).size!==headers.length)throw new Error("Duplicate column names found after normalization. Make every header unique.");const index={};headers.forEach((h,i)=>index[h]=i);
    if(index.product===undefined&&index.sku===undefined)throw new Error("Add a product or sku column to your CSV.");
    const get=(r,k)=>index[k]===undefined?"":(r[index[k]]??"");
    const now=new Date();const today=Date.UTC(now.getUTCFullYear(),now.getUTCMonth(),now.getUTCDate());
