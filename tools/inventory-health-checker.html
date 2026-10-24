@@ -64,14 +64,23 @@ function analyze(){
    const get=(r,k)=>index[k]===undefined?"":(r[index[k]]??"");
    const now=new Date();const today=Date.UTC(now.getUTCFullYear(),now.getUTCMonth(),now.getUTCDate());
    const analyzed=rows.slice(1).map((r,i)=>{
-    const qty=num(get(r,"quantity")),reorder=num(get(r,"reorder_level"));
-    const exp=date(get(r,"expiry_date")),move=date(get(r,"last_movement_date"));
+    const rowNo=i+2;
+    const rawQty=String(get(r,"quantity")??"").trim(),rawReorder=String(get(r,"reorder_level")??"").trim();
+    const rawExpiry=String(get(r,"expiry_date")??"").trim(),rawMove=String(get(r,"last_movement_date")??"").trim();
+    const qty=num(rawQty),reorder=num(rawReorder);
+    if(rawQty!==""&&qty===null)throw new Error("Invalid quantity at CSV row "+rowNo+". Enter a valid number or leave it blank.");
+    if(rawReorder!==""&&reorder===null)throw new Error("Invalid reorder_level at CSV row "+rowNo+". Enter a valid number or leave it blank.");
+    if(qty!==null&&qty<0)throw new Error("Negative quantity at CSV row "+rowNo+". Correct the row before analyzing.");
+    if(reorder!==null&&reorder<0)throw new Error("Negative reorder_level at CSV row "+rowNo+". Correct the row before analyzing.");
+    const exp=date(rawExpiry),move=date(rawMove);
+    if(rawExpiry!==""&&!exp)throw new Error("Invalid expiry_date at CSV row "+rowNo+". Use a real calendar date in YYYY-MM-DD format.");
+    if(rawMove!==""&&!move)throw new Error("Invalid last_movement_date at CSV row "+rowNo+". Use a real calendar date in YYYY-MM-DD format.");
     const flags=[];
     if(qty!==null&&qty<=0)flags.push("Out of stock");
     else if(qty!==null&&reorder!==null&&qty<reorder)flags.push("Low stock");
     if(exp){const d=daysFromToday(exp);if(d<0)flags.push("Past expiry");else if(d<=90)flags.push("Expiry within 90 days");}
     if(move&&Math.floor((today-move.getTime())/86400000)>=90)flags.push("No movement 90+ days");
-    return {sku:get(r,"sku"),product:get(r,"product")||get(r,"sku"),quantity:get(r,"quantity"),reorder:get(r,"reorder_level"),expiry:get(r,"expiry_date"),movement:get(r,"last_movement_date"),flags,original:r,row:i+2};
+    return {sku:get(r,"sku"),product:get(r,"product")||get(r,"sku"),quantity:get(r,"quantity"),reorder:get(r,"reorder_level"),expiry:get(r,"expiry_date"),movement:get(r,"last_movement_date"),flags,original:r,row:rowNo};
    });
    flagged=analyzed.filter(x=>x.flags.length);
    $("total").textContent=analyzed.length;$("low").textContent=analyzed.filter(x=>x.flags.includes("Low stock")||x.flags.includes("Out of stock")).length;
