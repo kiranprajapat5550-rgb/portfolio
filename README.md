@@ -23,7 +23,7 @@ https://kiranprajapat5550-rgb.github.io/portfolio/
 - **Clinic Booking Automation:** [View project](samples/clinic-booking-automation.html)
 - **AI Employee Approval Desk:** [View project](samples/ai-employee-agent.html)
 
-Portfolio projects demonstrate implemented work; live client deployments are only claimed where explicitly verified. Sample datasets are fictional unless explicitly stated otherwise.
+Portfolio projects document implemented work; live client deployments are only claimed where explicitly verified. Sample datasets are clearly identified and are fictional unless explicitly stated otherwise.
 
 ## Interactive tools
 
@@ -49,7 +49,7 @@ These are browser-based tools. The content planner uses a fixed template library
 ## Retail Store Cash Flow Dashboard
 
 - `samples/retail-store-cash-flow-dashboard.html` — responsive portfolio dashboard with cash-flow KPI cards, a daily closing-cash trend, weekly inflow/outflow comparison, weekly summary and expense breakdown.
-- **All dashboard figures are fictional sample data**, created for portfolio project. This is a static prototype with no live bank, POS, accounting or store-system connection. Some example KPI values may not reconcile across every displayed section; validate source definitions and totals before operational use.
+- **All dashboard figures are fictional sample data**, created for portfolio project. This is a static dashboard with no live bank, POS, accounting or store-system connection. Some example KPI values may not reconcile across every displayed section; validate source definitions and totals before operational use.
 
 ## Sample CSVs
 
@@ -79,7 +79,7 @@ The reorder point is a basic estimate: average daily demand × lead time + suppl
 
 ## Privacy and limitations
 
-The sales and inventory tools process the selected CSV locally in the browser. The appointment tracker and approval desk keep their temporary entries in page memory only. These prototypes do not connect to live business systems, external accounts, clinic calendars or real AI agents. Do not upload sensitive personal, patient, financial or confidential business data. Validate all output before using it for decisions.
+The sales and inventory tools process the selected CSV locally in the browser. The appointment tracker and approval desk keep their temporary entries in page memory only. These browser-based tools do not connect to live business systems, external accounts, clinic calendars or live AI agents. Do not upload sensitive personal, patient, financial or confidential business data. Validate all output before using it for decisions.
 
 ## Publish with GitHub Pages
 
@@ -97,4 +97,4 @@ No credentials or API tokens are included in this repository.
 
 - `samples/ceo-cash-flow-report.html` — executive summary, KPI cards, weekly summary and management notes.
 - `samples/retail-store-cash-flow-sample.csv` — fictional weekly cash-flow figures that can be opened in Excel or another spreadsheet app.
-- All figures are fictional demonstration data. No real client, bank, POS, or accounting data is connected.
+- All figures are fictional example data. No real client, bank, POS, or accounting data is connected.
