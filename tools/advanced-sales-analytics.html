@@ -67,7 +67,7 @@ $('load').addEventListener('click',async()=>{
   const ix=Object.fromEntries(headers.map((h,i)=>[h,i]));const get=(r,k)=>ix[k]===undefined?'':r[ix[k]]??'';
   const data=raw.slice(1).map((r,i)=>{
    const rowNo=i+2;const id=String(get(r,'order_id')).trim();if(!id)throw new Error('Missing order_id at CSV row '+rowNo+'.');
-   const date=String(get(r,'order_date')).trim();if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||Number.isNaN(Date.parse(date+'T00:00:00Z')))throw new Error('Invalid order_date at CSV row '+rowNo+'. Use YYYY-MM-DD.');
+   const date=String(get(r,'order_date')).trim();const parsedDate=/^\d{4}-\d{2}-\d{2}$/.test(date)?new Date(date+'T00:00:00Z'):null;if(!parsedDate||Number.isNaN(parsedDate.getTime())||parsedDate.toISOString().slice(0,10)!==date)throw new Error('Invalid order_date at CSV row '+rowNo+'. Use a real calendar date in YYYY-MM-DD format.');
    const quantity=num(get(r,'quantity'),'quantity',rowNo,true),price=num(get(r,'unit_price'),'unit_price',rowNo,true),discount=num(get(r,'discount'),'discount',rowNo,false),returns=num(get(r,'return_amount'),'return_amount',rowNo,false);
    if(quantity<0||price<0||discount<0||returns<0)throw new Error('Negative quantity/price/discount/return at CSV row '+rowNo+'. Correct the row and try again.');
    const gross=quantity*price,net=gross-discount-returns;
