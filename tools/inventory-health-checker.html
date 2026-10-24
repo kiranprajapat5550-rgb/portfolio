@@ -55,7 +55,7 @@ function analyze(){
  const file=$("csvFile").files[0];if(!file){$("status").textContent="Choose a CSV file first.";return;}
  if(file.size>10*1024*1024){$("status").textContent="File is larger than 10 MB. Please use a smaller CSV.";return;}
  const reader=new FileReader();
- reader.onerror=()=>{$("status").textContent="Could not read this file.";};
+ reader.onerror=()=>{flagged=[];$("download").disabled=true;$("total").textContent="—";$("low").textContent="—";$("expiry").textContent="—";$("slow").textContent="—";$("results").innerHTML='<tr><td colspan="7">Upload a valid CSV to begin.</td></tr>';$("status").textContent="Could not read this file.";};
  reader.onload=()=>{
   try{
    const rows=parseCSV(String(reader.result||""));if(rows.length<2)throw new Error("CSV needs a header row and at least one data row.");
@@ -89,7 +89,7 @@ function analyze(){
    $("results").innerHTML=flagged.length?flagged.map(x=>"<tr><td>"+escapeHTML(x.sku)+"</td><td>"+escapeHTML(x.product)+"</td><td>"+escapeHTML(x.quantity)+"</td><td>"+escapeHTML(x.reorder)+"</td><td>"+escapeHTML(x.expiry)+"</td><td>"+escapeHTML(x.movement)+"</td><td>"+x.flags.map(f=>'<span class="pill '+((f==="Past expiry"||f==="Out of stock")?"high":"")+'">'+escapeHTML(f)+"</span>").join(" ")+"</td></tr>").join(""):'<tr><td colspan="7">No exceptions found by these rules, or the relevant columns were not provided.</td></tr>';
    $("download").disabled=!flagged.length;
    $("status").textContent="Analysis complete: "+analyzed.length+" rows checked; "+flagged.length+" row(s) need review.";
-  }catch(e){$("status").textContent=e.message||"Could not analyze CSV.";flagged=[];$("download").disabled=true;}
+  }catch(e){flagged=[];$("download").disabled=true;$("total").textContent="—";$("low").textContent="—";$("expiry").textContent="—";$("slow").textContent="—";$("results").innerHTML='<tr><td colspan="7">Upload a valid CSV to begin.</td></tr>';$("status").textContent=e.message||"Could not analyze CSV.";}
  };
  reader.readAsText(file);
 }
