@@ -49,7 +49,7 @@ These are browser-based tools. The content planner uses a fixed template library
 ## Retail Store Cash Flow Dashboard
 
 - `samples/retail-store-cash-flow-dashboard.html` — responsive portfolio dashboard with cash-flow KPI cards, a daily closing-cash trend, weekly inflow/outflow comparison, weekly summary and expense breakdown.
-- **All dashboard figures are fictional sample data**, created for portfolio project. This is a static dashboard with no live bank, POS, accounting or store-system connection. Some example KPI values may not reconcile across every displayed section; validate source definitions and totals before operational use.
+- **All dashboard figures are fictional sample data**, created for portfolio project. This is a static dashboard with no live bank, POS, accounting or store-system connection. Weekly inflow, outflow and net figures reconcile to the sample-period totals; the daily closing-cash chart and standalone KPI examples are illustrative and are not calculated from a shared transaction ledger. Validate opening/closing balances before operational use.
 
 ## Sample CSVs
 
